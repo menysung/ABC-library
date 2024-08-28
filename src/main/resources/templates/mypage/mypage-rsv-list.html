@@ -50,32 +50,31 @@
 
                 <!-- 오른쪽 컨텐츠   -->
                 <div class="container my-3 flex-grow-1" id="rent">
-
-                <div class = "container">
-                    <h1>예약 관리</h1>
-                    <table class = "table text-center">
-                        <thead class = "table-dark">
-                        <tr>
-                            <th>ISBN</th>
-                            <th>제목</th>
-                            <th>저자</th>
-                            <th>예약일</th>
-                            <th>예약만료일</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr th:each = "rsv : ${rsvs}">
-                            <td th:text = "${rsv.rsvBookIsbn}"></td>
-                            <td th:text = "${rsv.rsvBookTitle}"></td>
-                            <td th:text = "${rsv.rsvBookAuthor}"></td>
-                            <td th:text = "${rsv.rsvDate}"></td>
-                            <td th:text = "${rsv.rsvDueDate}"></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div class = "container">
+                        <h1>예약 관리</h1>
+                        <table class = "table text-center">
+                            <thead class = "table-dark">
+                            <tr>
+                                <th>ISBN</th>
+                                <th>제목</th>
+                                <th>저자</th>
+                                <th>예약일</th>
+                                <th>예약만료일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each = "rsv : ${rsvs}">
+                                <td th:text = "${rsv.rsvBookIsbn}"></td>
+                                <td th:text = "${rsv.rsvBookTitle}"></td>
+                                <td th:text = "${rsv.rsvBookAuthor}"></td>
+                                <td th:text = "${rsv.rsvDate}"></td>
+                                <td th:text = "${rsv.rsvDueDate}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </body>
 </html>
