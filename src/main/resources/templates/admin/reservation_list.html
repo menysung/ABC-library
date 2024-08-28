@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="layout::head"></head>
+<body>
+
+<!-- 전체 페이지를 flexbox 컨테이너로 만듭니다 -->
+<div class="d-flex flex-column min-vh-100">
+
+
+
+    <!-- 네비게이션 메뉴 -->
+    <nav th:fragment = "navi" class = "navbar navbar-expand-lg navbar-light border-bottom mb-3"
+         style = "background-color: #4e8fea">
+        <div class = "container-fluid" style = "color: #ffffff">
+            <a class = "navbar-brand d-flex align-items-center" style = "color: #ffffff" th:href = "@{/}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: white ;transform: ;msFilter:;"><path d="M21 8c-.202 0-4.85.029-9 2.008C7.85 8.029 3.202 8 3 8a1 1 0 0 0-1 1v9.883a1 1 0 0 0 .305.719c.195.188.48.305.729.28l.127-.001c.683 0 4.296.098 8.416 2.025.016.008.034.005.05.011.119.049.244.083.373.083s.254-.034.374-.083c.016-.006.034-.003.05-.011 4.12-1.928 7.733-2.025 8.416-2.025l.127.001c.238.025.533-.092.729-.28.194-.189.304-.449.304-.719V9a1 1 0 0 0-1-1zM4 10.049c1.485.111 4.381.48 7 1.692v7.742c-3-1.175-5.59-1.494-7-1.576v-7.858zm16 7.858c-1.41.082-4 .401-7 1.576v-7.742c2.619-1.212 5.515-1.581 7-1.692v7.858z"></path><circle cx="12" cy="5" r="3"></circle></svg>
+                <span style="margin-left: 8px;">도서관</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                <!--  오른쪽 메뉴   -->
+                <ul class = "navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                    <li class = "nav-item my-2" style = "color: #ffffff" sec:authorize = "isAuthenticated()">
+                        <span sec:authentication = "name"></span> 님
+                    </li>
+                    <li class = "nav-item">
+                        <a class = "nav-link" style = "color: #ffffff" sec:authorize = "isAuthenticated()" th:href = "@{/user/logout}">로그아웃</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a class = "nav-link" style = "color: #ffffff" sec:authorize = "isAnonymous()"
+                           th:href = "@{/user/register}">회원가입</a>
+                        <a class = "nav-link" style = "color: #ffffff" sec:authorize = "hasRole('USER')"
+                           th:href = "@{/rent-list}">마이페이지</a>
+                        <a class = "nav-link" style = "color: #ffffff" sec:authorize = "hasRole('ADMIN')"
+                           th:href = "@{/admin/user}">관리자페이지</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 페이지 콘텐츠 -->
+    <div class="container flex-grow-1 d-flex" style="margin-top: 30px">
+
+        <!-- 왼쪽 고정 네브바       -->
+        <div th:replace="layout::admin"></div>
+
+        <!-- 오른쪽 컨텐츠   -->
+        <div class="container my-3 flex-grow-1">
+
+            <!-- 메인 콘텐츠 -->
+            <div class = "container">
+                <h2>예약 리스트</h2>
+                <form method = "get" action = "/admin/reservations" class = "mb-4">
+                    <div class = "row">
+                        <div class = "col-12 col-md-6 col-lg-3 mb-2">
+                            <label for = "isbn" class = "sr-only">ISBN</label>
+                            <input type = "text" name = "rsvBookIsbn" class = "form-control" id = "isbn"
+                                   th:value = "${rsvBookIsbn}" placeholder = "ISBN">
+                        </div>
+                        <div class = "col-12 col-md-6 col-lg-3 mb-2">
+                            <label for = "userId" class = "sr-only">사용자 ID</label>
+                            <input type = "number" name = "rsvUserIdx" class = "form-control" id = "userId"
+                                   th:value = "${rsvUserIdx}" placeholder = "사용자 ID">
+                        </div>
+                        <div class = "col-12 col-md-6 col-lg-3 mb-2">
+                            <label for = "date" class = "sr-only">예약 날짜</label>
+                            <input type = "date" name = "rsvDate" class = "form-control" th:value = "${rsvDate}"
+                                   id = "date">
+                        </div>
+                        <div class = "col-12 col-md-6 col-lg-3 mb-2">
+                            <label for = "includeCancelled">Include Cancelled:</label>
+                            <input type = "checkbox" id = "includeCancelled" name = "includeCancelled"
+                                   th:checked = "${includeCancelled}">
+                        </div>
+                        <div class = "col-12 col-md-6 col-lg-3 mb-2">
+                            <button type = "submit" class = "btn btn-primary form-control">검색</button>
+                        </div>
+                    </div>
+                </form>
+                <table class = "table table-striped">
+                    <thead>
+                    <tr>
+                        <th>예약 ID</th>
+                        <th>사용자 ID</th>
+                        <th>책 ISBN</th>
+                        <th>예약 날짜</th>
+                        <th>예약 확정 날짜</th>
+                        <th>예약 취소 날짜</th>
+                        <th>대출 예정일</th>
+                        <th>작업</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each = "reservation : ${reservations}">
+                        <td th:text = "${reservation.rsvIdx}"></td>
+                        <td th:text = "${reservation.rsvUserIdx}"></td>
+                        <td th:text = "${reservation.rsvBookIsbn}"></td>
+                        <td th:text = "${reservation.rsvDate}"></td>
+                        <td th:text = "${reservation.rsvConfirmDate}"></td>
+                        <td th:text = "${reservation.rsvCclDate}"></td>
+                        <td th:text = "${reservation.rsvDueDate}"></td>
+                        <td>
+                            <a th:if = "${reservation.rsvConfirmDate == null}">
+                                <form th:action = "@{/admin/confirmReservation/{rsvIdx}(rsvIdx=${reservation.rsvIdx})}"
+                                      method = "post" style = "display:inline;">
+                                    <button type = "submit" class = "btn btn-primary btn-sm"
+                                            onclick = "return confirm('예약 확정하시겠습니까?')">예약 확정
+                                    </button>
+                                </form>
+                            </a>
+                            <a th:if = "${reservation.rsvCclDate == null}">
+                                <form th:action = "@{/admin/cancelReservation/{rsvIdx}(rsvIdx=${reservation.rsvIdx})}"
+                                      method = "post" style = "display:inline;">
+                                    <button type = "submit" class = "btn btn-danger btn-sm"
+                                            onclick = "return confirm('예약 취소하시겠습니까?')">예약 취소
+                                    </button>
+                                </form>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+</div>
+        </div>
+    </div>
+</div>
+
+<script src = "https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src = "https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

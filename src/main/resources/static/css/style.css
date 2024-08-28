@@ -1,0 +1,249 @@
+
+/*html, body {*/
+/*    height: 100%;*/
+/*}*/
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+}
+
+
+/*.dropdown:hover .dropdown-menu {*/
+/*    display: block;*/
+/*    margin-top: 0;*/
+/*}*/
+
+.main-image {
+    width: 1600px;
+    height: 448px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 40%;
+}
+
+
+/* 메인 메뉴 스타일 */
+.main-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* 메뉴를 가로로 정렬합니다. */
+}
+
+/* 메인 메뉴 아이템 스타일 */
+.main-menu div {
+    position: relative;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 드롭다운 메뉴 호버 효과 */
+.navbar-nav .dropdown:hover .dropdown-menu {
+    display: block;
+    position: absolute;
+}
+
+/* 하위 메뉴 스타일 */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    /*background-color: #444;*/
+    /*padding: 10px;*/
+    /*z-index: 1;*/
+}
+
+/* 하위 메뉴 아이템 스타일 */
+.dropdown-menu div {
+    /*padding: 5px 0;*/
+    font-size: 15px;
+}
+
+/* 메인 메뉴 아이템 호버 시 하위 메뉴 표시 */
+.main-menu div:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; /* 추가한 스타일 */
+
+}
+.container1 {
+    border: solid 1px #6c757d;
+    width: 450px;
+    height: 450px;
+    position: absolute;
+    left: 750px;
+}
+
+.container2 {
+    border: solid 1px #6c757d;
+    width: 450px;
+    height: 600px;
+    position: absolute;
+    left: 750px;
+}
+
+
+.container {
+    flex-grow: 1;
+
+}
+
+.hover-effect:hover{
+    color: #a6a4a1
+}
+
+/* Sidebar styling */
+#sidebar-wrapper {
+    width: 180px;
+    /*height: 140px;*/
+    margin-top: 100px;
+    border: 1px solid #6c757d;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    background-color: #4e8fea;
+    color: white;
+
+}
+
+#sidebar-wrapper .sidebar-heading .list-group {
+    width: 150px;
+}
+
+
+
+/* Ensure the sidebar and content take full height */
+.container-fluid {
+    display: flex;
+    height: 100%;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+/* Footer styling */
+footer {
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+ /* 아코디언 */
+ .accordion {
+
+     cursor: pointer;
+     padding: 18px;
+     width: 100%;
+     text-align: left;
+     border: none;
+     outline: none;
+     transition: 0.4s;
+ }
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: white;
+    overflow: hidden;
+}
+
+/*추천도서 리스트*/
+.recommended-section {
+    text-align: center;
+    padding: 20px;
+}
+
+.book-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px; /* 이미지 간격을 위한 갭 추가 */
+}
+
+.book-item {
+    width: 170px;
+    text-align: center;
+    margin: 10px; /* book-item 간격 */
+}
+
+.book-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px; /* 이미지와 텍스트 간격 */
+}
+
+.book-title {
+    cursor: pointer;
+    padding: 5px;
+    color: #0d6efd;
+    text-decoration: underline;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+.book-title:hover {
+    color: darkblue;
+}
+
+/*.book-title:hover {*/
+/*    background-color: #f0f0f0;*/
+/*}*/
+
+.popup {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 330px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+
+}
+
+.popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup h3 {
+    margin-top: 0;
+}
+
+.popup-overlay {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+/*추천도서 끝*/
+
+

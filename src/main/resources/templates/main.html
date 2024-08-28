@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head th:replace="layout::head"></head>
+<body>
+<!-- 전체 페이지를 flexbox 컨테이너로 만듭니다 -->
+<div class="d-flex flex-column min-vh-100">
+
+<!-- 메뉴 바   -->
+<nav th:replace="layout::navi"></nav>
+
+<!--메뉴-->
+<nav th:replace="layout::menu" style="justify-content: center"></nav>
+
+    <!-- main content -->
+    <main >
+        <div class="main-image">
+            <img src="/images/main5.jpg" class="img">
+        </div>
+
+        <!-- 추천 도서 섹션 -->
+        <section class="recommended-section mt-3">
+            <h3>이달의 추천 도서</h3>
+            <div class="book-list">
+                <div class="book-item mt-3">
+                    <img src="/images/book1.jpg" alt="선재 업고 튀어">
+                    <p class="book-title" onclick="openPopup('popup1')" >선재 업고 튀어</p>
+                </div>
+                <div class="book-item mt-3">
+                    <img src="/images/book2.jpg" alt="룬의 아이들">
+                    <p class="book-title" onclick="openPopup('popup2')">룬의 아이들</p>
+                </div>
+                <div class="book-item mt-3">
+                    <img src="/images/book3.jpg" alt="두 사람의 인터내셔널">
+                    <p class="book-title" onclick="openPopup('popup3')">두 사람의 인터내셔널</p>
+                </div>
+                <div class="book-item mt-3">
+                    <img src="/images/book4.jpg" alt="THE MONEY BOOK">
+                    <p class="book-title" onclick="openPopup('popup4')">THE MONEY BOOK</p>
+                </div>
+                <div class="book-item mt-3">
+                    <img src="/images/book5.jpg" alt="나는 다정한 관찰자가 되기로 했다">
+                    <p class="book-title" onclick="openPopup('popup5')">나는 다정한 관찰자가 되기로 했다</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 팝업 오버레이 -->
+        <div id="popup-overlay" class="popup-overlay" onclick="closePopup()"></div>
+
+        <!-- 팝업 내용 -->
+        <div id="popup1" class="popup">
+
+
+            <button type="button" class="btn-close" onclick="closePopup()"></button>
+            <h3>선재 업고 튀어</h3>
+            <p>tvN 드라마 '선재 업고 튀어' 작가판 무삭제 대본집으로, 이시은 작가의 촘촘한 구성과 상세한 지문, 따듯한 대사들을 원본 그대로 확인할 수 있다.</p>
+        </div>
+        <div id="popup2" class="popup">
+            <button type="button" class="btn-close" onclick="closePopup()"></button>
+            <h3>룬의 아이들</h3>
+            <p>『룬의 아이들 - 윈터러』에 이은 2부 『룬의 아이들 - 데모닉』이 완결된 지 11년 만의 신작이다. 1부 ‘룬의 아이들’ 시리즈 3부에 해당하는 이번 작품은 실종된 오빠에 얽힌 비밀과 맞서 분투하는 공녀를 중심으로 ‘블러디드’라는 힘에 관한 이야기를 다루고 있다.</p>
+        </div>
+        <div id="popup3" class="popup">
+            <button type="button" class="btn-close" onclick="closePopup()"></button>
+            <h3>두 사람의 인터내셔널</h3>
+            <p>2022년 동아일보 신춘문예에서 “근래 보기 드문 강력하고 단단한 작품”, “처음부터 끝까지 단숨에 읽히게 만드는 흡인력이 돋보인다”는 평을 받으며 데뷔한 김기태의 첫 소설집 『두 사람의 인터내셔널』이 출간되었다.</p>
+        </div>
+        <div id="popup4" class="popup">
+            <button type="button" class="btn-close" onclick="closePopup()"></button>
+            <h3>THE MONEY BOOK</h3>
+            <p>돈이 행복의 필수 조건이라고 여기면서도, 막상 돈을 잘 모르는 사람들. 《더 머니북》은 이 사람들을 위해 만들어졌다.</p>
+        </div>
+        <div id="popup5" class="popup">
+            <button type="button" class="btn-close" onclick="closePopup()"></button>
+            <h3>나는 다정한 관찰자가 되기로 했다</h3>
+            <p>‘교육전문가는 아이를 어떻게 키울까?’ 일명 이은경쌤은 누적조회수 3,000만 뷰를 기록한 교육전문가면서 수많은 자녀교육서와 학습서를 출간한 베스트셀러 작가이다.</p>
+        </div>
+
+
+        <!-- 오시는 길 섹션 (가로정렬)-->
+        <section class="location-section" style="display: flex; align-items: center; justify-content: center; padding: 20px; background-color: white; margin-bottom: 100px">
+            <div style="text-align: left; margin-right: 20px;">
+                <h2>찾아오시는 길</h2>
+                <p>주소 : 부산광역시 부산진구 중앙대로 708</p>
+                <p>전화 : 051-753-5600</p>
+            </div>
+            <div class="map-container" style="flex-shrink: 0;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3262.0259898217896!2d129.05699371205102!3d35.15597257264783!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568eb6feb39fa0d%3A0x99fa06d0443b23c6!2z67aA7IKw6rSR7Jet7IucIOu2gOyCsOynhOq1rCDspJHslZnrjIDroZwgNzA4!5e0!3m2!1sko!2skr!4v1717555987345!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+    <br>
+    <br>
+    <br>
+
+</div>
+<!-- footer -->
+<footer th:replace="layout::footer"></footer>
+
+<script>
+    function openPopup(id) {
+        document.getElementById(id).style.display = 'block';
+        document.getElementById('popup-overlay').style.display = 'block';
+    }
+
+    function closePopup() {
+        var popups = document.getElementsByClassName('popup');
+        for (var i = 0; i < popups.length; i++) {
+            popups[i].style.display = 'none';
+        }
+        document.getElementById('popup-overlay').style.display = 'none';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout::head"></head>
+<body>
+    <!-- 전체 페이지를 flexbox 컨테이너로 만듭니다 -->
+    <div class="d-flex flex-column min-vh-100">
+
+        <!-- 메뉴 바 -->
+        <nav th:replace="layout::navi"></nav>
+
+        <!-- 페이지 콘텐츠 -->
+        <div class="container flex-grow-1 d-flex" style="margin-top: 100px">
+
+            <!-- 왼쪽 고정 네브바       -->
+            <div th:replace = "layout::my"></div>
+
+            <!-- 오른쪽 컨텐츠   -->
+            <div class="container my-3 flex-grow-1 text-center">
+
+                <div class="container1" style="padding: 50px">
+                <h2>[계정 탈퇴 페이지]</h2>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                <p>정말로 계정을 탈퇴하시겠습니까?</p>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                <form th:action="@{/user/delete}" th:object="${user}" method="post">
+                    <input type="hidden" th:field="*{idx}">
+                    <input type="submit" class="btn btn-sm btn-dark" value="탈퇴">
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>
